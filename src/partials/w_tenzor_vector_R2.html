@@ -4,10 +4,10 @@
         <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
             <tr>
                 <td>
-                    J
+                    j
                 </td>
                 <td>
-                    K
+                    k
                 </td>
                 <td>
                     Значение
@@ -25,7 +25,7 @@
                 </td>
             </tr>
         </table><br/>
-        <a onclick="showFullTableR2()" href="#">Показать тензор</a>
+        <a class="btn" onclick="showFullTableR2()" href="#">Показать тензор</a>
     </div>
     <div class="data">
 
@@ -45,7 +45,6 @@
         } else {
             v = dataSet.w_tenzor_vectorR2[k][j];
         }
-        console.log(j, k, dataSet.w_tenzor_vectorR2[k]);
         $("#w_tenzor_vectorR2_val").val(v);
     }
 
@@ -65,7 +64,6 @@
         var j_max = $("#graphVerticesAmount").val();
         var k_max = $("#systemCount").val();
         var table = "<table border='1' style='border-collapse: collapse;' cellpadding='5'>";
-        console.log(j_max, k_max);
 
             for (var k = 0; k < k_max; k++) {
                 table += "<tr>";
@@ -86,5 +84,3 @@
         w.document.write(table);
     }
 </script>
-
-<div></div>
