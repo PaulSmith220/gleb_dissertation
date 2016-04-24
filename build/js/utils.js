@@ -22,3 +22,12 @@ function getTemplate (id, replaceList) {
 function $input(id) {
     return document.getElementById(id);
 }
+
+function fillTo(v, total) {
+    var result = v.toString();
+    var actual = result.length;
+    for (var i = 0; i < total - actual; i++) {
+        result+="&nbsp;";
+    }
+    return result;
+}

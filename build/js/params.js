@@ -3,13 +3,15 @@ var dataSet = {
         {
             title: "Число вершин графов",
             id: "graphVerticesAmount",
-            value: 0,
+            value: 2,
             unit: '',
             change: function () {
-                var $w_tenzor_cont = $("#w_tenzor_vector .data");
+                var innerHtml = '';
+                var $w_tenzor_cont = $("#w_tenzor_vector .data"),
+                    $w_tenzor_contR2 = $("#w_tenzor_vectorR2 .data");
                 if ($w_tenzor_cont.length > 0) {
                     console.log('rebuilding w_tenzor_vector');
-                    var innerHtml = "<table><tr><th>№</th><th>Значение</th></tr>";
+                    innerHtml = "<table><tr><th>№</th><th>Значение</th></tr>";
                     for (var i = 0; i < $(this).val(); i++) {
                         innerHtml += [
                             "<tr><td>",
@@ -21,13 +23,17 @@ var dataSet = {
                     }
                     $w_tenzor_cont.html(innerHtml);
                 }
+                build_tz_vector_R2();
             }
         },
         {
             title: "Количество систем",
-            id: "p2",
-            value: 0,
-            unit: ''
+            id: "systemCount",
+            value: 4,
+            unit: '',
+            change: function() {
+                build_tz_vector_R2();
+            }
         },
         {
             title: "Длина дискретного времени",
@@ -43,6 +49,7 @@ var dataSet = {
         }
     ],
     w_tenzor_vector: [],
+    w_tenzor_vectorR2: [],
     output: [
         {
             title: "Выходной параметр 1",
@@ -66,3 +73,7 @@ var dataSet = {
         }
     ]
 };
+
+function build_tz_vector_R2() {
+    var j = 0;
+}

@@ -1,9 +1,25 @@
 <div class="well" id="w_tenzor_vector">
     <div class="title">
         Начальное значения вектора весов вершин
-        <div style="text-align: right;    padding-right: 20px;">
-            <span>№<input type="number" id="getWT" onchange="getWTbyNumber()" value="1"/></span><br/>
-            <span>#<input type="number" id="setWT" onchange="setWTbyNumber()"/></span>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        №
+                    </td>
+                    <td>
+                        <input type="number" id="getWT" onchange="getWTbyNumber()" value="1"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        <input type="number" id="setWT" onchange="setWTbyNumber()"/>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="data">
@@ -26,5 +42,3 @@
         e.val($("#setWT").val());
     }
 </script>
-
-<div></div>
