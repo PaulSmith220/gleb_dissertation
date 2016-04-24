@@ -181,6 +181,7 @@ path.domain,
     border-right: 2px solid #5DD2D8;
   }
 
+
 }
 
 .well#x_params {
@@ -191,4 +192,16 @@ path.domain,
   font-weight: bold;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+#w_tenzor_vector {
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  width: 170px;
+
+  input {
+    border: 1px solid #444;
+    margin: 5px;
+  }
 }

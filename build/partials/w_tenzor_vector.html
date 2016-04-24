@@ -1,0 +1,30 @@
+<div class="well" id="w_tenzor_vector">
+    <div class="title">
+        Начальное значения вектора весов вершин
+        <div style="text-align: right;    padding-right: 20px;">
+            <span>№<input type="number" id="getWT" onchange="getWTbyNumber()" value="1"/></span><br/>
+            <span>#<input type="number" id="setWT" onchange="setWTbyNumber()"/></span>
+        </div>
+    </div>
+    <div class="data">
+
+    </div>
+
+</div>
+
+<script>
+    function getWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+                v = e.val();
+        $("#setWT").val(v);
+    }
+
+    function setWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+        e.val($("#setWT").val());
+    }
+</script>
+
+<div></div>

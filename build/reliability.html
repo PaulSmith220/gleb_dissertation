@@ -17,23 +17,44 @@
 </head>
 <body onload="init()">
 <div id="splashscreen"></div>
-<div class="well" id="x_params">
-  <label>X изменяется от <input type="number" value="1" id="startX"/> </label>
-  <label>до <input type="number" value="20" id="endX"/> </label>
-  <label>с шагом <input type="number" value="0.5" id="stepX"/> </label>
-  <label>Отдельно показать: <input type="number" value="2.5" id="showX"/> </label>
-</div><div></div>
 <div class="well" id="input_params">
 
 </div><div></div>
+<div class="well" id="w_tenzor_vector">
+    <div class="title">
+        Начальное значения вектора весов вершин
+        <div style="text-align: right;    padding-right: 20px;">
+            <span>№<input type="number" id="getWT" onchange="getWTbyNumber()" value="1"/></span><br/>
+            <span>#<input type="number" id="setWT" onchange="setWTbyNumber()"/></span>
+        </div>
+    </div>
+    <div class="data">
+
+    </div>
+
+</div>
+
+<script>
+    function getWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+                v = e.val();
+        $("#setWT").val(v);
+    }
+
+    function setWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+        e.val($("#setWT").val());
+    }
+</script>
+
+<div></div>
 <div class="well">
   <div class="btn" id="execute" onclick="execute()">Рассчитать</div>
 </div><div></div>
 <div class="well" id="output_params">
 
-</div><div></div>
-<div class="well" id="graph">
-  <svg id="visualisation" width="700" height="500"></svg>
 </div><div></div>
 </body>
 <script id="number_template" type="text/plain">
