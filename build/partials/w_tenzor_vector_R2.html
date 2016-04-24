@@ -37,21 +37,27 @@
     function getWTR2byNumber() {
         var j = $("#w_tenzor_vectorR2_j").val(),
                 k = $("#w_tenzor_vectorR2_k").val();
-        j = j*1 + 1;
-        k = k*1 + 1;
+        j = j*1 - 1;
+        k = k*1 - 1;
         var v;
         if (dataSet.w_tenzor_vectorR2[k] == undefined || dataSet.w_tenzor_vectorR2[k][j] == undefined) {
             v = 0;
         } else {
             v = dataSet.w_tenzor_vectorR2[k][j];
         }
+        console.log(j, k, dataSet.w_tenzor_vectorR2[k]);
         $("#w_tenzor_vectorR2_val").val(v);
     }
 
     function setWTR2byNumber() {
-        var n = $("#getWTR2").val()*1 - 1,
-                e = $("#w_tenzor_vectorR2 .data input[data-number=" + n + "]");
-        e.val($("#setWTR2").val());
+        var j = $("#w_tenzor_vectorR2_j").val(),
+                k = $("#w_tenzor_vectorR2_k").val();
+        j = j*1 - 1;
+        k = k*1 - 1;
+        if (dataSet.w_tenzor_vectorR2[k] == undefined) {
+            dataSet.w_tenzor_vectorR2[k] = [];
+        }
+        dataSet.w_tenzor_vectorR2[k][j] = parseFloat($("#w_tenzor_vectorR2_val").val());
     }
 
     function showFullTableR2() {
