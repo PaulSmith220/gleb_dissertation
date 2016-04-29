@@ -51,6 +51,7 @@ var dataSet = {
     w_tenzor_vector: [],
     w_tenzor_vectorR2: [],
     w_tenzor_vectorR4: [],
+    w_tenzor_vector_w_R4: [],
     output: [
         {
             title: "Выходной параметр 1",
