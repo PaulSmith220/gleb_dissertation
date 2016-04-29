@@ -1,0 +1,130 @@
+<div class="well" id="w_tenzor_w_vectorR4" style="vertical-align: top; margin-left: 10px;">
+    <div class="title">
+        Тензор весов вершин<br/>
+        <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
+            <tr>
+                <td>
+                    j
+                </td>
+                <td>
+                    k
+                </td>
+                <td>
+                    i
+                </td>
+                <td>
+                    m
+                </td>
+                <td>
+                    Значение
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="w_tenzor_vector_w_R4_j" min="1" onchange="getWT_w_R4byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vector_w_R4_k" min="1" onchange="getWT_w_R4byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vector_w_R4_i" min="1" onchange="getWT_w_R4byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vector_w_R4_m" min="1" onchange="getWT_w_R4byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vector_w_R4_val" onchange="setWT_w_R4byNumber()"/>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <a href="#" class="btn" onclick="json_w_R4toWindow()">Сохранить данные</a>
+        <a href="#"  class="btn" onclick="_w_R4_backup_load()">Загрузить из файла</a>
+    </div>
+    <div class="data">
+
+    </div>
+
+</div>
+
+<script>
+    function getWT_w_R4byNumber() {
+        var i = parseFloat($("#w_tenzor_vector_w_R4_i").val())-1,
+                j = parseFloat($("#w_tenzor_vector_w_R4_j").val())-1,
+                k = parseFloat($("#w_tenzor_vector_w_R4_k").val())-1,
+                m = parseFloat($("#w_tenzor_vector_w_R4_m").val())-1;
+        var v;
+        if (
+                dataSet.w_tenzor_vector_w_R4[j] == undefined ||
+                dataSet.w_tenzor_vector_w_R4[j][k] == undefined ||
+                dataSet.w_tenzor_vector_w_R4[j][k][i] == undefined ||
+                dataSet.w_tenzor_vector_w_R4[j][k][i][m] == undefined
+        ) {
+            v = 0;
+        } else {
+            v = dataSet.w_tenzor_vector_w_R4[j][k][i][m];
+        }
+        $("#w_tenzor_vector_w_R4_val").val(v);
+    }
+
+    function setWT_w_R4byNumber() {
+        var i = parseFloat($("#w_tenzor_vector_w_R4_i").val())-1,
+                j = parseFloat($("#w_tenzor_vector_w_R4_j").val())-1,
+                k = parseFloat($("#w_tenzor_vector_w_R4_k").val())-1,
+                m = parseFloat($("#w_tenzor_vector_w_R4_m").val())-1;
+        // j, k, i, m
+        if (dataSet.w_tenzor_vector_w_R4[j] == undefined) {
+            dataSet.w_tenzor_vector_w_R4[j] = [];
+        }
+
+        if (dataSet.w_tenzor_vector_w_R4[j][k] == undefined) {
+            dataSet.w_tenzor_vector_w_R4[j][k] = [];
+        }
+
+        if (dataSet.w_tenzor_vector_w_R4[j][k][i] == undefined) {
+            dataSet.w_tenzor_vector_w_R4[j][k][i] = [];
+        }
+
+        dataSet.w_tenzor_vector_w_R4[j][k][i][m] = parseFloat($("#w_tenzor_vector_w_R4_val").val());
+    }
+
+
+    function get_w_R4JSON() {
+        var i_max = parseFloat($("#graphVerticesAmount").val()),
+                j_max = i_max;
+        var k_max = parseFloat($("#systemCount").val()),
+                m_max = k_max;
+
+        for (j = 0; j < j_max; j++) {
+            dataSet.w_tenzor_vector_w_R4[j] =  dataSet.w_tenzor_vector_w_R4[j] || [];
+
+            for (var k = 0; k < k_max; k++) {
+                dataSet.w_tenzor_vector_w_R4[j][k] = dataSet.w_tenzor_vector_w_R4[j][k] || [];
+
+                for (var i = 0; i < i_max; i++) {
+                    dataSet.w_tenzor_vector_w_R4[j][k][i] = dataSet.w_tenzor_vector_w_R4[j][k][i] || [];
+
+                    for (var m = 0; m < m_max; m++) {
+                        dataSet.w_tenzor_vector_w_R4[j][k][i][m] = dataSet.w_tenzor_vector_w_R4[j][k][i][m] || 0;
+                    }
+                }
+            }
+        }
+
+        return JSON.stringify(dataSet.w_tenzor_vector_w_R4);
+    };
+
+    function json_w_R4toWindow() {
+        alert("Эти данные нужно положить в js/backup/vertex_weights_tensor.js");
+        var w = window.open();
+        w.document.write('var _w_R4_backup = JSON.parse("' + get_w_R4JSON() + '");');
+    }
+
+    function _w_R4_backup_load() {
+        dataSet.w_tenzor_vector_w_R4 = _w_R4_backup;
+        alert("4-х мерый тензор загружен");
+    }
+
+</script>
+
+<div></div>

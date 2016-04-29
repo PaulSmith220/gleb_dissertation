@@ -1,0 +1,87 @@
+<div class="well" id="w_tenzor_vectorR2" style="vertical-align: top; margin-left: 10px;">
+    <div class="title">
+        Начальное значение тензора импульсного воздействия<br/>
+        <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
+            <tr>
+                <td>
+                    j
+                </td>
+                <td>
+                    k
+                </td>
+                <td>
+                    Значение
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="w_tenzor_vectorR2_j" onchange="getWTR2byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vectorR2_k" onchange="getWTR2byNumber()"/>
+                </td>
+                <td>
+                    <input type="number" id="w_tenzor_vectorR2_val" onchange="setWTR2byNumber()"/>
+                </td>
+            </tr>
+        </table><br/>
+        <a class="btn" onclick="showFullTableR2()" href="#">Показать тензор</a>
+    </div>
+    <div class="data">
+
+    </div>
+
+</div>
+
+<script>
+    function getWTR2byNumber() {
+        var j = $("#w_tenzor_vectorR2_j").val(),
+                k = $("#w_tenzor_vectorR2_k").val();
+        j = j*1 - 1;
+        k = k*1 - 1;
+        var v;
+        if (dataSet.w_tenzor_vectorR2[k] == undefined || dataSet.w_tenzor_vectorR2[k][j] == undefined) {
+            v = 0;
+        } else {
+            v = dataSet.w_tenzor_vectorR2[k][j];
+        }
+        $("#w_tenzor_vectorR2_val").val(v);
+    }
+
+    function setWTR2byNumber() {
+        var j = $("#w_tenzor_vectorR2_j").val(),
+                k = $("#w_tenzor_vectorR2_k").val();
+        j = j*1 - 1;
+        k = k*1 - 1;
+        if (dataSet.w_tenzor_vectorR2[k] == undefined) {
+            dataSet.w_tenzor_vectorR2[k] = [];
+        }
+        dataSet.w_tenzor_vectorR2[k][j] = parseFloat($("#w_tenzor_vectorR2_val").val());
+    }
+
+    function showFullTableR2() {
+        var w = window.open();
+        var j_max = $("#graphVerticesAmount").val();
+        var k_max = $("#systemCount").val();
+        var table = "<table border='1' style='border-collapse: collapse;' cellpadding='5'>";
+
+            for (var k = 0; k < k_max; k++) {
+                table += "<tr>";
+                if (dataSet.w_tenzor_vectorR2[k] == undefined) {
+                    dataSet.w_tenzor_vectorR2[k] = [];
+                }
+
+                for (var j = 0; j < j_max; j++) {
+                    if (dataSet.w_tenzor_vectorR2[k][j] == undefined) {
+                        dataSet.w_tenzor_vectorR2[k][j] = 0;
+                    }
+                    table += "<td>" + dataSet.w_tenzor_vectorR2[k][j] + "</td>";
+                }
+
+                table += "</tr>";
+            }
+
+        w.document.write(table);
+    }
+</script>
+<div></div>
