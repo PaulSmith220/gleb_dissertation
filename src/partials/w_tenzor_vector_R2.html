@@ -37,6 +37,10 @@
     function getWTR2byNumber() {
         var j = $("#w_tenzor_vectorR2_j").val(),
                 k = $("#w_tenzor_vectorR2_k").val();
+        if (j > $("#graphVerticesAmount").val() || k > $("#systemCount").val()) {
+            $("#w_tenzor_vectorR2_val").val('');
+            return;
+        }
         j = j*1 - 1;
         k = k*1 - 1;
         var v;

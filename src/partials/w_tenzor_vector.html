@@ -40,5 +40,11 @@
         var n = $("#getWT").val()*1 - 1,
                 e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
         e.val($("#setWT").val());
+        dataSet.w_tenzor_vector[n] = parseFloat($("#setWT").val());
+    }
+
+    function setWtBySelf(elem) {
+        var n = parseInt($(elem).attr('data-number'));
+        dataSet.w_tenzor_vector[n] = parseFloat($(elem).val());
     }
 </script>

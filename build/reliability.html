@@ -64,6 +64,12 @@
         var n = $("#getWT").val()*1 - 1,
                 e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
         e.val($("#setWT").val());
+        dataSet.w_tenzor_vector[n] = parseFloat($("#setWT").val());
+    }
+
+    function setWtBySelf(elem) {
+        var n = parseInt($(elem).attr('data-number'));
+        dataSet.w_tenzor_vector[n] = parseFloat($(elem).val());
     }
 </script>
 <div class="well" id="w_tenzor_vectorR2" style="vertical-align: top; margin-left: 10px;">
@@ -105,6 +111,10 @@
     function getWTR2byNumber() {
         var j = $("#w_tenzor_vectorR2_j").val(),
                 k = $("#w_tenzor_vectorR2_k").val();
+        if (j > $("#graphVerticesAmount").val() || k > $("#systemCount").val()) {
+            $("#w_tenzor_vectorR2_val").val('');
+            return;
+        }
         j = j*1 - 1;
         k = k*1 - 1;
         var v;
