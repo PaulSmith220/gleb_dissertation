@@ -38,7 +38,7 @@ var dataSet = {
         {
             title: "Длина дискретного времени",
             id: "discretTimeLength",
-            value: 0,
+            value: 2,
             unit: ''
         }
     ],

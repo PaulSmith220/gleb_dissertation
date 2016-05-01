@@ -65,7 +65,45 @@ function execute() {
     console.log("Временный 4х-мерный вектор", JSON.stringify(tmp_R4_AjTenzor));
 
 
-    
+    // Заполняем оставшиеся слои tmp_R3
+    var p = parseInt($("#graphVerticesAmount").val()),
+        n =  parseInt($("#systemCount").val());
+    console.info("\nРасчёт оставшихся слоев 3х-мерного массива:");
+    for(var layer = 1; layer < tmp_R3_height; layer++) {
+
+        var prevLayer = tmp_R3[layer-1],
+            currentLayer = tmp_R3[layer];
+            console.log("Слой " + (layer+1) + " до расчёта", JSON.stringify(currentLayer));
+            for (var k = 0; k < currentLayer.length; k++) {
+                for (var j = 0; j < currentLayer[k].length; j++) {
+                    ////////////////////////////////////////////
+                    currentLayer[k][j] = 0;
+                    // По числу скобок в формуле
+                    for (var i = 0; i < p; i++) {
+                        var __br = oneBracket(k, j, n, i, prevLayer, tmp_R4_AjTenzor);
+                        currentLayer[k][j] += __br;
+                    }
+                    ////////////////////////////////////////////
+                }
+            }
+        console.log("Слой " + (layer+1) + " после расчёта", JSON.stringify(currentLayer));
+    }
+    console.log("Получившийся 3х-мерный вектор: ", JSON.stringify(tmp_R3) );
+
+    function oneBracket(k, j, n, i, prevLayer, R4) {
+        function sumPart(j, k, x) {
+            var m1 = prevLayer[i][x],
+                m2 =  R4[k][j][i][x];
+            return m1*m2;
+        }
+
+        var result = 0;
+        for (var x = 0; x < n; x++) {
+            result += sumPart(j, k, x);
+        }
+        return result;
+    }
+
 
 
 

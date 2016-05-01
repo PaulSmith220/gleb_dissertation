@@ -34,4 +34,8 @@ function init() {
             document.getElementById("splashscreen").remove();
         },400);
     }, 1000);
+
+    window.onerror = function() {
+      alert("Произошла ошибка. Проверьте, все ли начальные данные заданы.");
+    };
 }
