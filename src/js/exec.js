@@ -39,6 +39,32 @@ function execute() {
     }
     console.log("Временный 2х-мерный вектор", JSON.stringify(tmp_R2));
 
+
+    // Перемножаем поэлементно Тензор смежности и Тензор весов вершин и перезаписываем Тензор смежности результатом
+    var tmp_R4_AjTenzor = [];
+    var i_max = parseFloat($("#graphVerticesAmount").val()),
+        j_max = i_max;
+    var k_max = parseFloat($("#systemCount").val()),
+        m_max = k_max;
+
+    for (j = 0; j < j_max; j++) {
+        tmp_R4_AjTenzor[j] =  tmp_R4_AjTenzor[j] || [];
+
+        for (var k = 0; k < k_max; k++) {
+            tmp_R4_AjTenzor[j][k] = tmp_R4_AjTenzor[j][k] || [];
+
+            for (var i = 0; i < i_max; i++) {
+                tmp_R4_AjTenzor[j][k][i] = tmp_R4_AjTenzor[j][k][i] || [];
+
+                for (var m = 0; m < m_max; m++) {
+                    tmp_R4_AjTenzor[j][k][i][m] = dataSet.w_tenzor_vectorR4[j][k][i][m] * dataSet.w_tenzor_vector_w_R4[j][k][i][m];
+                }
+            }
+        }
+    }
+    console.log("Временный 4х-мерный вектор", JSON.stringify(tmp_R4_AjTenzor));
+
+
     
 
 

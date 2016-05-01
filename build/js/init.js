@@ -7,6 +7,10 @@ function init() {
     }
 
     setTimeout(function() {
+        $("#graphVerticesAmount").change();
+    }, 500);
+
+    setTimeout(function() {
         dataSet.input.forEach(function(item) {
             var $elem = $("#" + item.id);
             item.value = $elem.val();
