@@ -10,7 +10,7 @@ function execute() {
     for (var _k = 0; _k < k; _k++) {
         tmp_R3[0][_k] = [];
         for (var _j = 0; _j < j; _j++) {
-            tmp_R3[0][_k][_j] = dataSet.w_tenzor_vectorR2[_j][_k];
+            tmp_R3[0][_k][_j] = dataSet.w_tenzor_vectorR2[_k][_j];
         }
     }
     for (var layer = 1; layer < tmp_R3_height; layer++) {
@@ -79,8 +79,8 @@ function execute() {
                     ////////////////////////////////////////////
                     currentLayer[k][j] = 0;
                     // По числу скобок в формуле
-                    for (var i = 0; i < p; i++) {
-                        var __br = oneBracket(k, j, n, i, prevLayer, tmp_R4_AjTenzor);
+                    for (var i = 0; i < n; i++) {
+                        var __br = oneBracket(k, j, p, i, prevLayer, tmp_R4_AjTenzor);
                         currentLayer[k][j] += __br;
                     }
                     ////////////////////////////////////////////
@@ -90,15 +90,18 @@ function execute() {
     }
     console.log("Получившийся 3х-мерный вектор: ", JSON.stringify(tmp_R3) );
 
-    function oneBracket(k, j, n, i, prevLayer, R4) {
+    function oneBracket(k, j, p, i, prevLayer, R4) {
         function sumPart(j, k, x) {
-            var m1 = prevLayer[i][x],
-                m2 =  R4[k][j][i][x];
+            var m1 = prevLayer[x][i],
+                m2 = R4[k],
+                    m2 = m2[j],
+                    m2 = m2[x],
+                    m2 = m2[i];
             return m1*m2;
         }
 
         var result = 0;
-        for (var x = 0; x < n; x++) {
+        for (var x = 0; x < p; x++) {
             result += sumPart(j, k, x);
         }
         return result;

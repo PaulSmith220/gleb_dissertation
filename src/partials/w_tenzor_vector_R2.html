@@ -44,10 +44,10 @@
         j = j*1 - 1;
         k = k*1 - 1;
         var v;
-        if (dataSet.w_tenzor_vectorR2[k] == undefined || dataSet.w_tenzor_vectorR2[k][j] == undefined) {
+        if (dataSet.w_tenzor_vectorR2[j] == undefined || dataSet.w_tenzor_vectorR2[j][k] == undefined) {
             v = 0;
         } else {
-            v = dataSet.w_tenzor_vectorR2[k][j];
+            v = dataSet.w_tenzor_vectorR2[j][k];
         }
         $("#w_tenzor_vectorR2_val").val(v);
     }
@@ -57,10 +57,10 @@
                 k = $("#w_tenzor_vectorR2_k").val();
         j = j*1 - 1;
         k = k*1 - 1;
-        if (dataSet.w_tenzor_vectorR2[k] == undefined) {
-            dataSet.w_tenzor_vectorR2[k] = [];
+        if (dataSet.w_tenzor_vectorR2[j] == undefined) {
+            dataSet.w_tenzor_vectorR2[j] = [];
         }
-        dataSet.w_tenzor_vectorR2[k][j] = parseFloat($("#w_tenzor_vectorR2_val").val());
+        dataSet.w_tenzor_vectorR2[j][k] = parseFloat($("#w_tenzor_vectorR2_val").val());
     }
 
     function showFullTableR2() {
@@ -69,17 +69,17 @@
         var k_max = $("#systemCount").val();
         var table = "<table border='1' style='border-collapse: collapse;' cellpadding='5'>";
 
-            for (var k = 0; k < k_max; k++) {
+            for (var j = 0; j < j_max; j++) {
                 table += "<tr>";
-                if (dataSet.w_tenzor_vectorR2[k] == undefined) {
-                    dataSet.w_tenzor_vectorR2[k] = [];
+                if (dataSet.w_tenzor_vectorR2[j] == undefined) {
+                    dataSet.w_tenzor_vectorR2[j] = [];
                 }
 
-                for (var j = 0; j < j_max; j++) {
-                    if (dataSet.w_tenzor_vectorR2[k][j] == undefined) {
-                        dataSet.w_tenzor_vectorR2[k][j] = 0;
+                for (var k = 0; k < k_max; k++) {
+                    if (dataSet.w_tenzor_vectorR2[j][k] == undefined) {
+                        dataSet.w_tenzor_vectorR2[j][k] = 0;
                     }
-                    table += "<td>" + dataSet.w_tenzor_vectorR2[k][j] + "</td>";
+                    table += "<td>" + dataSet.w_tenzor_vectorR2[j][k] + "</td>";
                 }
 
                 table += "</tr>";
