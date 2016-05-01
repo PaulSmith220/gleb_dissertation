@@ -17,7 +17,7 @@ var dataSet = {
                             "<tr><td>",
                             i+1,
                             "</td><td>",
-                            "<input data-number='" + i + "' type='number' value='" + (dataSet.w_tenzor_vector[i] == undefined ? 0 : dataSet.w_tenzor_vector[i]) + "'/> ",
+                            "<input data-number='" + i + "' type='number' onchange='setWtBySelf(this)' value='" + (dataSet.w_tenzor_vector[i] == undefined ? 0 : dataSet.w_tenzor_vector[i]) + "'/> ",
                             "</td></tr>"
                         ].join('');
                     }
@@ -37,15 +37,9 @@ var dataSet = {
         },
         {
             title: "Длина дискретного времени",
-            id: "p3",
+            id: "discretTimeLength",
             value: 0,
             unit: ''
-        },
-        {
-            title: "Параметр 4",
-            id: "p4",
-            value: 0.04,
-            unit: ""
         }
     ],
     w_tenzor_vector: [],
