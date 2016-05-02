@@ -1,3 +1,5 @@
+var output = {};
+
 function execute() {
     // Временный 3х-мерный массив, размер определяется длиной дискретного времени
     var tmp_R3_height = parseFloat($("#discretTimeLength").val());
@@ -116,23 +118,74 @@ function execute() {
     tmp_R3.forEach(function(layer) {
         var tmp_ = [];
         for (var i = 0; i < p; i++) {
-            tmp_.push( layer[i].reduce(function(num, sum){
-                return num + sum;
-            }, 0));
+            tmp_.push(
+                layer[i].reduce(
+                    function(num, sum){
+                        return num + sum;
+                    },
+                    0));
         }
         tmp_R3_clotted.push(tmp_);
     });
-
-    console.log(JSON.stringify(tmp_R3_clotted));
-
+    console.log("Его свёртка по числу систем: ", JSON.stringify(tmp_R3_clotted));
 
 
+    // Заполняем оставшиеся слои tmp_R2
+    for (var i = 1; i < tmp_R2.length; i++) {
+        for (var x = 0; x < tmp_R2[i].length; x++) {
+            tmp_R2[i][x] = 1 - tmp_R2[i-1][x] * tmp_R3_clotted[i][x];
+        }
+    }
+    console.log("Дозаполненный 2х-мерый вектор весов вершин: ", JSON.stringify(tmp_R2));
+
+    output.R2_vertWeight = tmp_R2;
+    output.R3_pulceAction = tmp_R3;
+
+
+}
+
+function saveEvoTenzor() {
+    var p = parseInt($("#graphVerticesAmount").val()),
+        n =  parseInt($("#systemCount").val());
+    var tmp_R3_T = [];
+    var _n,_l,_p;
+    var html = "";
+    var delimiter = $("#dataOutputPrecision").val();
+    with(output) {
+        // Число слоёв нового массива
+        for (var _n = 0; _n < R3_pulceAction[0][0].length; _n++) {
+            html += "<h3>Система № " + (_n  + 1) + "</h3>";
+            html += "<table border='1' style='border-collapse: collapse;' cellpadding='5'>";
+            html += "<tr><td colspan='" + (R3_pulceAction.length + 1)+ "'>Время</td>";
+            tmp_R3_T[_n] = [];
+            // Число строк в слое
+            for (var _p = 0; _p < R3_pulceAction[0].length; _p++) {
+                html += "<tr>";
+                if (_p == 0) {
+                    html += "<td style='width: 13px; text-align: center;' rowspan='" + R3_pulceAction[0].length + "'>В е р ш и н а</td>";
+                }
+                tmp_R3_T[_n][_p] = [];
+                // Число элементов в строке
+                for (var _l = 0; _l < R3_pulceAction.length; _l++) {
+                    tmp_R3_T[_n][_p][_l] = R3_pulceAction[_l][_p][_n];
+                    html += "<td>" + (R3_pulceAction[_l][_p][_n].toFixed(delimiter)) + "</td>";
+                }
+                html += "</tr>";
+            }
+            html += "</table><br/><br/>";
+        }
+    }
+    var w = window.open();
+    w.document.write(html);
+
+    console.log("Пересортированный 3х-мерный массив: ", JSON.stringify(tmp_R3_T));
 }
 
 
 // :TODO Удалить после окончания тестов
 function testData() {
-    dataSet.w_tenzor_vectorR2 = JSON.parse("[[2,5],[2,5],[2,5]]");
+    dataSet.w_tenzor_vector = [1,2,3];
+    dataSet.w_tenzor_vectorR2 = [[2,5],[2,5],[2,5]];
     R4_backup_load(true);
     _w_R4_backup_load(true);
 }

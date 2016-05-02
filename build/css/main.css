@@ -166,7 +166,10 @@ path.domain,
   cursor: pointer;
   text-decoration: none;
   color: #444;
-  font-weight: bold; }
+  font-weight: bold;
+  max-width: 300px;
+  box-sizing: border-box;
+  margin-bottom: 5px; }
   .btn:hover {
     background: #444;
     color: white; }

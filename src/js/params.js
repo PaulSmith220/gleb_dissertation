@@ -10,7 +10,6 @@ var dataSet = {
                 var $w_tenzor_cont = $("#w_tenzor_vector .data"),
                     $w_tenzor_contR2 = $("#w_tenzor_vectorR2 .data");
                 if ($w_tenzor_cont.length > 0) {
-                    console.log('rebuilding w_tenzor_vector');
                     innerHtml = "<table><tr><th>№</th><th>Значение</th></tr>";
                     for (var i = 0; i < $(this).val(); i++) {
                         innerHtml += [
@@ -40,6 +39,12 @@ var dataSet = {
             id: "discretTimeLength",
             value: 3,
             unit: ''
+        },
+        {
+            title: "Точность вывода",
+            id: "dataOutputPrecision",
+            value: 3,
+            unit: 'знаков'
         }
     ],
     w_tenzor_vector: [],
