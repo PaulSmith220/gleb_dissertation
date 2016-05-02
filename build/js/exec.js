@@ -181,6 +181,29 @@ function saveEvoTenzor() {
     console.log("Пересортированный 3х-мерный массив: ", JSON.stringify(tmp_R3_T));
 }
 
+function saveReliabilityTenzor() {
+    var html = "";
+    var delimiter = $("#dataOutputPrecision").val();
+    with (output) {
+        html += "<h3>Тензор надежности вершин</h3>"
+        html += "<table border='1' style='border-collapse: collapse;' cellpadding='5'>";
+        html += "<tr><td colspan='" + (R2_vertWeight.length + 1)+ "'>Время</td>";
+        for (var row = 0; row < R2_vertWeight[0].length; row++) {
+            html += "<tr>";
+            if (row == 0) {
+                html += "<td style='width: 13px; text-align: center;' rowspan='" + R2_vertWeight.length + "'>В е р ш и н а</td>";
+            }
+            for (var cell = 0; cell < R2_vertWeight.length; cell ++) {
+                html += "<td>" + (R2_vertWeight[cell][row].toFixed(delimiter)) + "</td>";
+            }
+            html += "</tr>";
+        }
+        html += "</table>";
+    }
+    var w = window.open();
+    w.document.write(html);
+}
+
 
 // :TODO Удалить после окончания тестов
 function testData() {
