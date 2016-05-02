@@ -73,19 +73,19 @@ function execute() {
 
         var prevLayer = tmp_R3[layer-1],
             currentLayer = tmp_R3[layer];
-            console.log("Слой " + (layer+1) + " до расчёта", JSON.stringify(currentLayer));
-            for (var k = 0; k < currentLayer.length; k++) {
-                for (var j = 0; j < currentLayer[k].length; j++) {
-                    ////////////////////////////////////////////
-                    currentLayer[k][j] = 0;
-                    // По числу скобок в формуле
-                    for (var i = 0; i < n; i++) {
-                        var __br = oneBracket(k, j, p, i, prevLayer, tmp_R4_AjTenzor);
-                        currentLayer[k][j] += __br;
-                    }
-                    ////////////////////////////////////////////
+        console.log("Слой " + (layer+1) + " до расчёта", JSON.stringify(currentLayer));
+        for (var k = 0; k < currentLayer.length; k++) {
+            for (var j = 0; j < currentLayer[k].length; j++) {
+                ////////////////////////////////////////////
+                currentLayer[k][j] = 0;
+                // По числу скобок в формуле
+                for (var i = 0; i < n; i++) {
+                    var __br = oneBracket(k, j, p, i, prevLayer, tmp_R4_AjTenzor);
+                    currentLayer[k][j] += __br;
                 }
+                ////////////////////////////////////////////
             }
+        }
         console.log("Слой " + (layer+1) + " после расчёта", JSON.stringify(currentLayer));
     }
     console.log("Получившийся 3х-мерный вектор: ", JSON.stringify(tmp_R3) );
@@ -94,9 +94,9 @@ function execute() {
         function sumPart(j, k, x) {
             var m1 = prevLayer[x][i],
                 m2 = R4[k],
-                    m2 = m2[j],
-                    m2 = m2[x],
-                    m2 = m2[i];
+                m2 = m2[j],
+                m2 = m2[x],
+                m2 = m2[i];
             return m1*m2;
         }
 
@@ -108,6 +108,31 @@ function execute() {
     }
 
 
+    // Каждый слой 3х-мерного массива свёртываем по числу систем x число вершин
+    p = parseInt($("#graphVerticesAmount").val()),
+        n =  parseInt($("#systemCount").val());
+    // В каждом слое каждую строку сворачиваем, суммируя элементы. Внутири слоя получится одномепрный массив
+    var tmp_R3_clotted = [];
+    tmp_R3.forEach(function(layer) {
+        var tmp_ = [];
+        for (var i = 0; i < p; i++) {
+            tmp_.push( layer[i].reduce(function(num, sum){
+                return num + sum;
+            }, 0));
+        }
+        tmp_R3_clotted.push(tmp_);
+    });
+
+    console.log(JSON.stringify(tmp_R3_clotted));
 
 
+
+}
+
+
+// :TODO Удалить после окончания тестов
+function testData() {
+    dataSet.w_tenzor_vectorR2 = JSON.parse("[[2,5],[2,5],[2,5]]");
+    R4_backup_load(true);
+    _w_R4_backup_load(true);
 }

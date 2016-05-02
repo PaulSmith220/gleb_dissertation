@@ -3,7 +3,7 @@ var dataSet = {
         {
             title: "Число вершин графов",
             id: "graphVerticesAmount",
-            value: 2,
+            value: 3,
             unit: '',
             change: function () {
                 var innerHtml = '';
@@ -29,7 +29,7 @@ var dataSet = {
         {
             title: "Количество систем",
             id: "systemCount",
-            value: 4,
+            value: 2,
             unit: '',
             change: function() {
                 build_tz_vector_R2();
@@ -38,7 +38,7 @@ var dataSet = {
         {
             title: "Длина дискретного времени",
             id: "discretTimeLength",
-            value: 2,
+            value: 3,
             unit: ''
         }
     ],

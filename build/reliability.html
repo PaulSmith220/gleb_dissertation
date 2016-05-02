@@ -18,6 +18,7 @@
     <script type="text/javascript" src="js/backup/vertex_weights_tensor.js"></script>
 </head>
 <body onload="init()">
+<a href="#" onclick="testData()" style="position: absolute; top: 10px; left: 10px; background: #444; color: #ddd; font-weight: bold; padding: 5px;">TEST DATA</a>
 <div id="splashscreen"></div>
 <div class="well" id="input_params">
 
@@ -169,16 +170,16 @@
         <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
             <tr>
                 <td>
-                    j
-                </td>
-                <td>
                     k
                 </td>
                 <td>
-                    i
+                    j
                 </td>
                 <td>
                     m
+                </td>
+                <td>
+                    i
                 </td>
                 <td>
                     Значение
@@ -285,8 +286,10 @@
         w.document.write('var R4_backup = JSON.parse("' + getR4JSON() + '");');
     }
 
-    function R4_backup_load() {
+    function R4_backup_load(noalert) {
         dataSet.w_tenzor_vectorR4 = R4_backup;
+        if (noalert)
+            return;
         alert("4-х мерый тензор загружен");
     }
 
@@ -297,16 +300,16 @@
         <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
             <tr>
                 <td>
-                    j
-                </td>
-                <td>
                     k
                 </td>
                 <td>
-                    i
+                    j
                 </td>
                 <td>
                     m
+                </td>
+                <td>
+                    i
                 </td>
                 <td>
                     Значение
@@ -413,8 +416,10 @@
         w.document.write('var _w_R4_backup = JSON.parse("' + get_w_R4JSON() + '");');
     }
 
-    function _w_R4_backup_load() {
+    function _w_R4_backup_load(noalert) {
         dataSet.w_tenzor_vector_w_R4 = _w_R4_backup;
+        if (noalert)
+            return;
         alert("4-х мерый тензор загружен");
     }
 
