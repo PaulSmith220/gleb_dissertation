@@ -1,3 +1,54 @@
+<div class="well" style="white-space: nowrap;">
+<div id="w_tenzor_vector">
+    <div class="title">
+        Начальное значения вектора весов вершин
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        №
+                    </td>
+                    <td>
+                        <input type="number" id="getWT" onchange="getWTbyNumber()" value="1"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        #
+                    </td>
+                    <td>
+                        <input type="number" id="setWT" onchange="setWTbyNumber()"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="data">
+
+    </div>
+
+</div>
+
+<script>
+    function getWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+                v = e.val();
+        $("#setWT").val(v);
+    }
+
+    function setWTbyNumber() {
+        var n = $("#getWT").val()*1 - 1,
+                e = $("#w_tenzor_vector .data input[data-number=" + n + "]");
+        e.val($("#setWT").val());
+        dataSet.w_tenzor_vector[n] = parseFloat($("#setWT").val());
+    }
+
+    function setWtBySelf(elem) {
+        var n = parseInt($(elem).attr('data-number'));
+        dataSet.w_tenzor_vector[n] = parseFloat($(elem).val());
+    }
+</script>
 <div id="w_tenzor_vectorR2" style="vertical-align: top; margin-left: 10px;">
     <div class="title">
         Начальное значение тензора импульсного воздействия<br/>
@@ -103,3 +154,4 @@
         }
     }
 </script>
+</div>

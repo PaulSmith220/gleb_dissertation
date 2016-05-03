@@ -19,12 +19,6 @@ function init() {
     }, 0);
 
 
-    var outputWell = document.getElementById("output_params");
-    for (var i = 0; i < dataSet.output.length; i++) {
-        outputWell.innerHTML += getTemplate("number_output", dataSet.output[i]);
-        dataSet.output[i].link = document.getElementById(dataSet.output[i].id);
-    }
-
     setTimeout(function() {
         document.getElementById("splashscreen").className = "show";
     }, 0);

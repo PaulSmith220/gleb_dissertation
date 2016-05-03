@@ -1,4 +1,4 @@
-// Возвращает входноq параметр по его названию
+// Возвращает входной параметр по его названию
 function input(title, onlyValue) {
     for (var i = 0; i < dataSet.input.length; i++) {
         if(dataSet.input[i].title == title) {

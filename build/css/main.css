@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-  background: #ddd;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQIW2M8fPjwfwYGBgZZWVkQxcCIIfDgwQOwisePH0NUoAsAAJC5E9PKemz2AAAAAElFTkSuQmCC");
   color: #444;
   text-align: center;
   font-family: Arial;
@@ -108,8 +108,10 @@ path.domain,
   padding: 20px;
   border-radius: 10px;
   max-width: 700px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  text-align: center; }
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  vertical-align: top;
+  margin-left: 10px; }
   .well label {
     margin: 10px;
     display: inline-block;
@@ -124,19 +126,23 @@ path.domain,
     width: 100px; }
   .well .btn#execute {
     display: block;
-    background: #48AFB4;
-    color: white;
-    font-weight: bold;
     width: 300px;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    border-top: 2px solid #5DD2D8;
-    border-left: 2px solid #5DD2D8;
-    border-bottom: 2px solid #409CA0;
-    border-right: 2px solid #409CA0; }
-  .well .btn#execute:hover {
-    background: #6DADB0; }
+    background: #48AFB4;
+    background-image: -webkit-linear-gradient(top, #48AFB4, #22777a);
+    background-image: linear-gradient(to bottom, #48AFB4, #22777a);
+    border-radius: 5px;
+    text-shadow: 1px 1px 3px #666666;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    border: solid #22777a 2px;
+    text-decoration: none; }
+    .well .btn#execute:hover {
+      background: #4cc3c7;
+      background-image: -webkit-linear-gradient(top, #4cc3c7, #2f9a9e);
+      background-image: linear-gradient(to bottom, #4cc3c7, #2f9a9e);
+      text-decoration: none; }
   .well .btn#execute:active {
     border-top: 2px solid #409CA0;
     border-left: 2px solid #409CA0;
@@ -153,12 +159,20 @@ path.domain,
 
 #w_tenzor_vector {
   padding: 10px;
-  height: 300px;
   overflow-y: auto;
-  width: 170px; }
+  width: 170px;
+  display: inline-block; }
+  #w_tenzor_vector .title {
+    white-space: normal; }
   #w_tenzor_vector input {
     border: 1px solid #444;
     margin: 5px; }
+
+#w_tenzor_vectorR2 {
+  display: inline-block;
+  margin-top: 12px; }
+  #w_tenzor_vectorR2 .title table {
+    margin-top: 20px; }
 
 .btn {
   padding: 5px;
@@ -173,3 +187,14 @@ path.domain,
   .btn:hover {
     background: #444;
     color: white; }
+
+#btnsPanel {
+  overflow: hidden;
+  display: block;
+  height: 0;
+  -webkit-transition: height 0.5s ease-in-out;
+  transition: height 0.5s ease-in-out; }
+  #btnsPanel.show {
+    height: 85px;
+    -webkit-transition: height 0.5s ease-in-out;
+    transition: height 0.5s ease-in-out; }

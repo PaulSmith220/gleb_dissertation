@@ -1,6 +1,7 @@
 var output = {};
-
+var isExecuted = false;
 function execute() {
+    fill_All();
     // Временный 3х-мерный массив, размер определяется длиной дискретного времени
     var tmp_R3_height = parseFloat($("#discretTimeLength").val());
     var tmp_R3 = new Array(tmp_R3_height);
@@ -141,7 +142,8 @@ function execute() {
     output.R2_vertWeight = tmp_R2;
     output.R3_pulceAction = tmp_R3;
 
-
+    isExecuted = true;
+    document.getElementById("btnsPanel").className = "show";
 }
 
 function saveEvoTenzor() {
@@ -211,4 +213,10 @@ function testData() {
     dataSet.w_tenzor_vectorR2 = [[2,5],[2,5],[2,5]];
     R4_backup_load(true);
     _w_R4_backup_load(true);
+}
+
+function fill_All() {
+    fill_R2();
+    fill_R4();
+    fill_W_R4();
 }

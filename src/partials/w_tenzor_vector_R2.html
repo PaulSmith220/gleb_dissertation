@@ -1,13 +1,13 @@
-<div class="well" id="w_tenzor_vectorR2" style="vertical-align: top; margin-left: 10px;">
+<div id="w_tenzor_vectorR2" style="vertical-align: top; margin-left: 10px;">
     <div class="title">
         Начальное значение тензора импульсного воздействия<br/>
         <table border="1" style="    border-spacing: 0; border-collapse: collapse;">
             <tr>
                 <td>
-                    j
+                    k
                 </td>
                 <td>
-                    k
+                    j
                 </td>
                 <td>
                     Значение
@@ -87,5 +87,19 @@
 
         w.document.write(table);
     }
+
+    function fill_R2() {
+        var j_max = $("#graphVerticesAmount").val();
+        var k_max = $("#systemCount").val();
+        for (var j = 0; j < j_max; j++) {
+            if (dataSet.w_tenzor_vectorR2[j] == undefined) {
+                dataSet.w_tenzor_vectorR2[j] = [];
+            }
+            for (var k = 0; k < k_max; k++) {
+                if (dataSet.w_tenzor_vectorR2[j][k] == undefined) {
+                    dataSet.w_tenzor_vectorR2[j][k] = 0;
+                }
+            }
+        }
+    }
 </script>
-<div></div>
